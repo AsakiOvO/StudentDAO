@@ -68,27 +68,18 @@ public class StudentDAOIMP implements StudentDAO{
 
 	    }
     }
-	    
-<<<<<<< HEAD
+
     public List<Student> findAll(){
 	    String sql = "SELECT * FROM student";
 	    PreparedStatement pstmt = null;
 	    DataBaseConnection conn = null;
 	    List<Student> list = new ArrayList<>();
-=======
-    public List findAll(){
-	    String sql = "SELECT * FROM student";
-	    PreparedStatement pstmt = null;
-	    DataBaseConnection conn = null;
-	    List<Map<String,Object>> list = new ArrayList<>();
->>>>>>> c016915789f2e7f1cef276d429623270c5a84614
 	    //针对数据库的具体操作
 	    try{
 		    conn = new DataBaseConnection();
 
 		    pstmt = conn.getConnection().prepareStatement(sql);
 		    ResultSet resultSet = pstmt.executeQuery();
-<<<<<<< HEAD
 
 		    while (resultSet.next()) {
 		    	Student student = new Student();
@@ -96,17 +87,6 @@ public class StudentDAOIMP implements StudentDAO{
 		    	student.setID(Long.parseLong(id));
 		    	student.setName(resultSet.getString("name"));
 		    	list.add(student);
-=======
-		    ResultSetMetaData resultSetMetaData = resultSet.getMetaData();    //获得元数据
-		    int columnCount = resultSetMetaData.getColumnCount();   //获得总的列数
-		    while (resultSet.next()) {
-			    Map<String,Object> rsMap = new HashMap<String,Object>();
-			    for (int i = 1; i <= columnCount; i++) {
-			    	//循环每一列，并获取每一列里面的数据
-				    rsMap.put(resultSetMetaData.getColumnName(i),resultSet.getObject(i));
-			    }
-			    list.add(rsMap);
->>>>>>> c016915789f2e7f1cef276d429623270c5a84614
 		    }
 		    pstmt.close();
 		    conn.close();
